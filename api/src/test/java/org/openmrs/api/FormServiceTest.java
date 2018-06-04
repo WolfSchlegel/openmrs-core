@@ -9,13 +9,6 @@
  */
 package org.openmrs.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +21,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.collections.ListUtils;
 import org.junit.Assert;
 import org.junit.Test;
@@ -45,6 +37,13 @@ import org.openmrs.obs.SerializableComplexObsHandler;
 import org.openmrs.test.BaseContextSensitiveTest;
 import org.openmrs.util.DateUtil;
 import org.openmrs.util.OpenmrsConstants;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * TODO clean up and finish this test for all methods in FormService
@@ -239,7 +238,6 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	 * Make sure that multiple forms are returned if a field is on a form more than once
 	 * 
 	 * @see {@link FormService#getForms(String, Boolean, java.util.Collection, Boolean, java.util.Collection, java.util.Collection, java.util.Collection)
-
 	 */
 	@Test
 	public void getForms_shouldReturnDuplicateFormWhenGivenFieldsIncludedInFormMultipleTimes() {
@@ -257,8 +255,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * @
-	 * @see FormService#getForms(String,Boolean,Collection,Boolean,Collection,Collection,Collection)
+	 * @ @see FormService#getForms(String,Boolean,Collection,Boolean,Collection,Collection,Collection)
 	 */
 	@Test
 	public void getForms_shouldReturnFormsContainingAllFormFieldsInContainingAllFormFields() {
@@ -286,10 +283,10 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	}
 	
 	/**
-	 * ensure that FormFields in containingAnyFormField parameter are considered when filtering the results
+	 * ensure that FormFields in containingAnyFormField parameter are considered when filtering the
+	 * results
 	 * 
 	 * @see {@link FormService#getForms(String, Boolean, java.util.Collection, Boolean, java.util.Collection, java.util.Collection, java.util.Collection)
-
 	 */
 	@Test
 	public void getForms_shouldReturnFormsThatHaveAnyMatchingFormFieldsInContainingAnyFormField() {
@@ -307,8 +304,8 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		Integer currentNumberOfForms = formsReturned.size();
 		
 		assertEquals(numberOfExpectedForms, currentNumberOfForms);
-		assertTrue(wasFormsSuccessfullyFilteredByMatchingFormFieldsInContainingAnyFormField(containingAnyFormField,
-		    formsReturned));
+		assertTrue(
+		    wasFormsSuccessfullyFilteredByMatchingFormFieldsInContainingAnyFormField(containingAnyFormField, formsReturned));
 		
 	}
 	
@@ -767,7 +764,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	 * 
 	 * @param filename resource path to the file
 	 * @return the contents of the file in a String
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private String getResourceAsString(String filename) throws IOException {
 		InputStream resource = this.getClass().getClassLoader().getResourceAsStream(filename);
@@ -871,6 +868,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	
 	/**
 	 * Creates a new Global Property to lock forms by setting its value
+	 * 
 	 * @param propertyValue value for forms locked GP
 	 */
 	public void createFormsLockedGPAndSetValue(String propertyValue) {
@@ -999,7 +997,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		Form duplicateForm = fs.duplicateForm(form);
 		assertEquals(form, duplicateForm);
 	}
-
+	
 	private Form createMockForm(Boolean retried) {
 		Form form1 = new Form();
 		form1.setName("form_name_2");
@@ -1008,13 +1006,12 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		if (retried) {
 			form1.setRetired(true);
 			form1.setRetireReason("For testing");
-		}
-		else {
+		} else {
 			form1.setRetired(false);
 		}
 		return form1;
 	}
-
+	
 	/**
 	 * @see FormService#getAllForms()
 	 */
@@ -1029,7 +1026,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		forms = Context.getFormService().getAllForms();
 		assertEquals(currentFormsSize + 1, forms.size());
 	}
-
+	
 	/**
 	 * @see FormService#getAllForms()
 	 */
@@ -1038,13 +1035,13 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		List<Form> forms = Context.getFormService().getAllForms();
 		int currentFormsSize = forms.size();
 		assertEquals(1, currentFormsSize);
-
+		
 		Context.getFormService().saveForm(createMockForm(true));
-
+		
 		forms = Context.getFormService().getAllForms();
 		assertEquals(currentFormsSize + 1, forms.size());
 	}
-
+	
 	/**
 	 * @see FormService#getAllForms(boolean)
 	 */
@@ -1053,13 +1050,13 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		List<Form> forms = Context.getFormService().getAllForms(true);
 		int currentFormsSize = forms.size();
 		assertEquals(1, currentFormsSize);
-
+		
 		Context.getFormService().saveForm(createMockForm(true));
-
+		
 		forms = Context.getFormService().getAllForms(true);
-		assertEquals(currentFormsSize + 1 , forms.size());
+		assertEquals(currentFormsSize + 1, forms.size());
 	}
-
+	
 	/**
 	 * @see FormService#getAllForms(boolean)
 	 */
@@ -1068,13 +1065,13 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		List<Form> forms = Context.getFormService().getAllForms(false);
 		int currentFormsSize = forms.size();
 		assertEquals(1, currentFormsSize);
-
+		
 		Context.getFormService().saveForm(createMockForm(true));
-
+		
 		forms = Context.getFormService().getAllForms(false);
-		assertEquals(currentFormsSize , forms.size());
+		assertEquals(currentFormsSize, forms.size());
 	}
-
+	
 	/**
 	 * @see FormService#getForm(String)
 	 */
@@ -1083,7 +1080,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		List<Form> forms = Context.getFormService().getAllForms();
 		boolean formNameFound = false;
 		final String formName = "Sample_Form_Not_In_List";
-		for (Form node:forms) {
+		for (Form node : forms) {
 			if (node.getName().equals(formName)) {
 				formNameFound = true;
 			}
@@ -1093,7 +1090,7 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 		Form form = Context.getFormService().getForm(formName);
 		assertNull(form);
 	}
-
+	
 	/**
 	 * @see FormService#getForm(String)
 	 */
@@ -1101,40 +1098,40 @@ public class FormServiceTest extends BaseContextSensitiveTest {
 	public void getForm_shouldReturnFormIfFormFound() {
 		Form form = Context.getFormService().getForm("form_name_2");
 		assertNull(form);
-
+		
 		// create Form with form_name_2 and version 2.0
 		Context.getFormService().saveForm(createMockForm(false));
 		form = Context.getFormService().getForm("form_name_2");
 		assertNotNull(form);
 	}
-
+	
 	@Test
 	public void getForm_shouldReturnFormIfFormFoundWithNameAndVersion() {
 		Form form = Context.getFormService().getForm("form_name_2", "2.0");
 		assertNull(form);
-
+		
 		// create Form with form_name_2 and version 2.0
 		Context.getFormService().saveForm(createMockForm(false));
 		form = Context.getFormService().getForm("form_name_2", "2.0");
 		assertNotNull(form);
 	}
-
+	
 	@Test
 	public void getForm_shouldReturnNullIfFormNotFoundWithNameOrVersion() {
 		Form form = Context.getFormService().getForm("form_name_2", "2.0");
 		assertNull(form);
-
+		
 		// create Form with form_name_2 and version 2.0
 		Context.getFormService().saveForm(createMockForm(false));
 		form = Context.getFormService().getForm("form_name_2", "2.0");
 		assertNotNull(form);
-
+		
 		form = Context.getFormService().getForm("form_name_3", "2.0");
 		assertNull(form);
-
+		
 		form = Context.getFormService().getForm("form_name_2", "3.0");
 		assertNull(form);
-
+		
 		form = Context.getFormService().getForm("form_name_3", "3.0");
 		assertNull(form);
 	}
