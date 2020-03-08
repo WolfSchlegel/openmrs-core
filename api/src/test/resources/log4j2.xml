@@ -33,5 +33,11 @@
 		<Root level="OFF">
 			<AppenderRef ref="CONSOLE" />
 		</Root>
+		
+		<!-- TODO TRUNK-4830 remove	-->
+		<Logger name="org.openmrs.liquibase" level="INFO" />
+		<Logger name="org.openmrs.util" level="INFO" />
+		<Logger name="org.openmrs.web.filter" level="INFO" />
+
 	</Loggers>
 </Configuration>
