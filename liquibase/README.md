@@ -157,7 +157,7 @@ For reasons of consistency, the attribute **`merged_data`** of the table **`pers
     <changeSet ...>
         <createTable tableName="person_merge_log">
             ...
-            <column name="value" type="TEXT">
+            <column name="merged_data" type="TEXT">
             ...
         </createTable>
     </changeSet>
@@ -228,9 +228,9 @@ and
 The new snapshots files are now ready to be added to the OpenMRS master branch. 
 
 #### Step 1 - Add the new snapshot files 
-Copy the file `liquibase-schema-only-SNAPSHOT.xml` to `org/openmrs/liquibase/snapshots/schema-only` and rename it to `liquibase-schema-only-<major.minor>.x.xml`.
+Move the file `liquibase-schema-only-SNAPSHOT.xml` to `org/openmrs/liquibase/snapshots/schema-only` and rename it to `liquibase-schema-only-<major.minor>.x.xml`.
 
-Similarly. copy the file `liquibase-core-data-SNAPSHOT.xml` to `org/openmrs/liquibase/snapshots/core-data` and rename it to `liquibase-core-data-<major.minor>.x.xml`.
+Similarly. move the file `liquibase-core-data-SNAPSHOT.xml` to `org/openmrs/liquibase/snapshots/core-data` and rename it to `liquibase-core-data-<major.minor>.x.xml`.
 
 For example, when creating snapshots for version 2.2.x of OpenMRS, the resulting files are:
 
