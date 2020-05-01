@@ -28,6 +28,17 @@
 		See http://www.liquibase.org/manual/home#available_database_refactorings
 		for a list of supported elements and attributes
 	-->
+
+	<!-- 
+		Do not use BOOLEAN as a type for boolean attributes as Liquibase version 3.x no longer maps BOOLEAN to 
+		TINYINT(1) when applying change logs to a MySQL database.
+		
+		Instead use the property "boolean.type. Also c.f. openmrs-core/liquibase/README.md and 
+		https://www.liquibase.org/documentation/changelog_parameters.html. 
+	-->
+	<property name="boolean.type" value="TINYINT(1)" dbms="mysql"/>
+	<property name="boolean.type" value="BOOLEAN" dbms="!mysql"/>
+
 	<changeSet id="TRUNK-4755" author="Rahul,Swathi">
             <preConditions onFail="MARK_RAN">
                 <not>

@@ -19,6 +19,10 @@
     	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
 		http://www.liquibase.org/xml/ns/dbchangelog 
     	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+	<property name="boolean.type" value="TINYINT(1)" dbms="mysql"/>
+	<property name="boolean.type" value="BOOLEAN" dbms="!mysql"/>
+
 	<changeSet author="ben (generated)" id="1227303685425-1">
         <createTable tableName="cohort">
             <column autoIncrement="true" name="cohort_id" type="int">
@@ -34,7 +38,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -63,7 +67,7 @@
             <column autoIncrement="true" name="concept_id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="short_name" type="varchar(255)"/>
@@ -75,7 +79,7 @@
             <column defaultValueNumeric="0" name="class_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="is_set" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="is_set" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -136,7 +140,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -166,7 +170,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -246,7 +250,7 @@
             <column defaultValue="" name="locale" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="locale_preferred" type="BOOLEAN" defaultValueBoolean="false"/>
+            <column name="locale_preferred" type="${boolean.type}" defaultValueBoolean="false"/>
             <column defaultValueNumeric="0" name="creator" type="int">
                 <constraints nullable="false"/>
             </column>
@@ -254,7 +258,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="concept_name_type" type="varchar(50)"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -283,7 +287,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -317,7 +321,7 @@
             <column name="low_critical" type="double precision"/>
             <column name="low_normal" type="double precision"/>
             <column name="units" type="varchar(50)"/>
-            <column defaultValueBoolean="false" name="precise" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="precise" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="display_precision" type="int" />
@@ -422,7 +426,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -477,7 +481,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(50)"/>
-            <column defaultValueBoolean="false" name="combination" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="combination" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="dosage_form" type="int"/>
@@ -492,7 +496,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="changed_by" type="int"/>
@@ -526,10 +530,10 @@
             <column name="equivalent_daily_dose" type="double precision"/>
             <column name="units" type="varchar(255)"/>
             <column name="frequency" type="varchar(255)"/>
-            <column defaultValueBoolean="false" name="prn" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="prn" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="complex" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="complex" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="quantity" type="int"/>
@@ -560,7 +564,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -592,7 +596,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -624,7 +628,7 @@
             <column name="table_name" type="varchar(50)"/>
             <column name="attribute_name" type="varchar(50)"/>
             <column name="default_value" type="text"/>
-            <column defaultValueBoolean="false" name="select_multiple" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="select_multiple" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -635,7 +639,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -674,7 +678,7 @@
             </column>
             <column name="name" type="varchar(50)"/>
             <column name="description" type="text"/>
-            <column defaultValueBoolean="false" name="is_set" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="is_set" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -701,7 +705,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="build" type="int"/>
-            <column defaultValueBoolean="false" name="published" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="published" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="xslt" type="text"/>
@@ -716,7 +720,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -745,7 +749,7 @@
             <column name="parent_form_field" type="int"/>
             <column name="min_occurs" type="int"/>
             <column name="max_occurs" type="int"/>
-            <column name="required" defaultValueBoolean="false" type="BOOLEAN">
+            <column name="required" defaultValueBoolean="false" type="${boolean.type}">
                 <constraints nullable="false" />
             </column>
             <column name="changed_by" type="int"/>
@@ -896,7 +900,7 @@
             <column name="address4" type="varchar(255)"/>
             <column name="address5" type="varchar(255)"/>
             <column name="address6" type="varchar(255)"/>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -945,10 +949,10 @@
             <column name="text" type="varchar(512)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="satisfied_by_any" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="satisfied_by_any" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="alert_read" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="alert_read" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="date_to_expire" type="DATETIME"/>
@@ -974,7 +978,7 @@
             <column name="user_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="alert_read" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="alert_read" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="date_changed" type="timestamp"/>
@@ -1021,7 +1025,7 @@
             <column name="obs_group_id" type="int"/>
             <column name="accession_number" type="varchar(255)"/>
             <column name="value_group_id" type="int"/>
-            <column name="value_boolean" type="BOOLEAN"/>
+            <column name="value_boolean" type="${boolean.type}"/>
             <column name="value_coded" type="int"/>
             <column name="value_coded_name_id" type="int"/>
             <column name="value_drug" type="int"/>
@@ -1037,7 +1041,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1066,7 +1070,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1094,7 +1098,7 @@
             <column name="instructions" type="text"/>
             <column name="start_date" type="DATETIME"/>
             <column name="auto_expire_date" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="discontinued" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="discontinued" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="discontinued_date" type="DATETIME"/>
@@ -1107,7 +1111,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1136,7 +1140,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1158,7 +1162,7 @@
             <column defaultValueNumeric="0" name="identifier_type" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="preferred" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="preferred" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="location_id" type="int"/>
@@ -1170,7 +1174,7 @@
             </column>
             <column name="date_changed" type="DATETIME"/>
             <column name="changed_by" type="int" />
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1194,7 +1198,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="format" type="varchar(255)"/>
-            <column defaultValueBoolean="false" name="check_digit" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="check_digit" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -1203,7 +1207,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="required" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="required" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="format_description" type="varchar(255)"/>
@@ -1211,7 +1215,7 @@
             <column name="location_behavior" type="varchar(50)">
                 <constraints nullable="true"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1246,7 +1250,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1279,7 +1283,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1298,10 +1302,10 @@
             </column>
             <column defaultValue="" name="gender" type="varchar(50)"/>
             <column name="birthdate" type="DATE"/>
-            <column defaultValueBoolean="false" name="birthdate_estimated" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="birthdate_estimated" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="dead" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="dead" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="death_date" type="DATETIME"/>
@@ -1314,7 +1318,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1332,7 +1336,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="person_id" type="int"/>
-            <column defaultValueBoolean="false" name="preferred" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="preferred" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="address1" type="varchar(255)"/>
@@ -1351,7 +1355,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1392,7 +1396,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1417,7 +1421,7 @@
             </column>
             <column name="format" type="varchar(50)"/>
             <column name="foreign_key" type="int"/>
-            <column defaultValueBoolean="false" name="searchable" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="searchable" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -1428,7 +1432,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1447,7 +1451,7 @@
             <column autoIncrement="true" name="person_name_id" type="int">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column defaultValueBoolean="false" name="preferred" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="preferred" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="person_id" type="int">
@@ -1467,7 +1471,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1512,7 +1516,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="name" type="varchar(50)">
@@ -1542,7 +1546,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="changed_by" type="int"/>
@@ -1564,10 +1568,10 @@
             <column defaultValueNumeric="0" name="concept_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="initial" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="initial" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="terminal" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="terminal" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="creator" type="int">
@@ -1576,7 +1580,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="retired" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="changed_by" type="int"/>
@@ -1611,7 +1615,7 @@
             </column>
             <column name="date_changed" type="DATETIME"/>
             <column name="changed_by" type="int"/>
-            <column defaultValueBoolean="false" name="voided" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="voided" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1634,7 +1638,7 @@
             <column name="b_is_to_a" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="preferred" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="preferred" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="weight" type="int">
@@ -1649,7 +1653,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1685,7 +1689,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -1766,10 +1770,10 @@
             <column defaultValueNumeric="0" name="repeat_interval" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="start_on_startup" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="start_on_startup" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="started" type="BOOLEAN">
+            <column defaultValueBoolean="false" name="started" type="${boolean.type}">
                 <constraints nullable="false"/>
             </column>
             <column defaultValueNumeric="0" name="created_by" type="int"/>
@@ -1844,7 +1848,7 @@
             <column name="person_id" type="int">
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1879,7 +1883,7 @@
             <column name="date_created" type="datetime" >
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int" />
@@ -1930,7 +1934,7 @@
             </column>
             <column name="date_changed" type="DATETIME" />
             <column name="changed_by" type="int"/>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="date_retired" type="DATETIME"/>
@@ -1957,7 +1961,7 @@
             <column name="date_created" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -1998,7 +2002,7 @@
             <column name="date_created" type="datetime">
                 <constraints nullable="false"/>
             </column>
-            <column name="voided" type="boolean" defaultValueBoolean="false">
+            <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -2067,7 +2071,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -2106,7 +2110,7 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME"/>
-            <column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int"/>
@@ -2137,7 +2141,7 @@
             <column name="date_created" type="datetime"><constraints nullable="false"/></column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="datetime" />
-            <column name="retired" type="boolean" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int" />
@@ -2162,7 +2166,7 @@
             <column name="date_created" type="datetime"><constraints nullable="false"/></column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="datetime" />
-            <column name="voided" type="boolean" defaultValueBoolean="false">
+            <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int" />
@@ -2198,7 +2202,7 @@
 			</column>
 			<column name="changed_by" type="int" />
 			<column name="date_changed" type="datetime" />
-			<column name="retired" type="boolean" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false" />
 			</column>
 			<column name="retired_by" type="int" />
@@ -2225,7 +2229,7 @@
             <column name="date_created" type="datetime"><constraints nullable="false"/></column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="datetime" />
-            <column name="voided" type="boolean" defaultValueBoolean="false">
+            <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="voided_by" type="int" />
@@ -2258,7 +2262,7 @@
             </column>
             <column name="date_changed" type="DATETIME"/>
             <column name="changed_by" type="int"/>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -2289,10 +2293,10 @@
             </column>
             <column name="changed_by" type="int"/>
             <column name="date_changed" type="DATETIME" />
-            <column name="is_hidden" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="is_hidden" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int" />
@@ -2362,7 +2366,7 @@
  			</column>
  			<column name="changed_by" type="int" />
  			<column name="date_changed" type="datetime" />
- 			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+ 			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
  				<constraints nullable="false" />
  			</column>
  			<column name="retired_by" type="int" />
@@ -2404,7 +2408,7 @@
              <column name="date_created" type="datetime"><constraints nullable="false"/></column>
              <column name="changed_by" type="int"/>
              <column name="date_changed" type="datetime" />
-             <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+             <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                  <constraints nullable="false"/>
              </column>
              <column name="retired_by" type="int" />

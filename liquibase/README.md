@@ -162,12 +162,26 @@ For reasons of consistency, the attribute **`merged_data`** of the table **`pers
         </createTable>
     </changeSet>
     
-When creating snapshots, Liquibase uses the types `BIT` or `BIT(1)` for boolean attributes. These types need to be changed to `BOOLEAN`:
+When creating snapshots, Liquibase uses the types `BIT` or `BIT(1)` for boolean attributes as of Liquibase version 3.x. 
+
+When applying such a snapshot to a MySQL database, the type `BOOLEAN` is no longer mapped to `TINYINT(1)` but remains `BIT` (or `BIT(1)`). 
+This conflicts with MySQL data types (c.f. https://dev.mysql.com/doc/refman/5.6/en/other-vendor-data-types.html).
+
+In order to MySQL's data types the following two changes need to be applied to `liquibase-schema-only-SNAPSHOT.xml`:
+ 
+(1) Add these properties before first change set, please note that the second property negates MySQL by using `!`:
+
+	 <property name="boolean.type" value="TINYINT(1)" dbms="mysql"/>
+	 <property name="boolean.type" value="BOOLEAN" dbms="!mysql"/>
+
+The variable `boolean.type` is resolved when executing the change log file (c.f. https://www.liquibase.org/documentation/changelog_parameters.html).
+
+(2) Change the types `BIT` or `BIT(1)` to `${boolean.type}`. 
 
     <changeSet ...>
         <createTable tableName="...">
             ...
-            <column name="..." ... type="BOOLEAN">
+            <column name="..." ... type="${boolean.type}">
             ...
         </createTable>
     </changeSet>
@@ -263,6 +277,11 @@ The minor version number of the new update change log is increased by one as thi
 * and *before* OpenMRS version 2.3 will be created
 
 Include the new file in `resources/liquibase-update-to-latest.xml`, it is used by integration tests (as mentioned above).
+
+Double check that the previous liquibase updates file does not contain `type="BOOLEAN"` but uses `type="@{boolean.type}"` instead. 
+In the example, the previous liquibase update files is `org/openmrs/liquibase/updates/liquibase-updates-2.2.x.xml`
+
+More details about this check are available in the section "Step 4 - Double check generated data types" above. 
 
 #### Step 3 - Make OpenMRS aware of the new versions
 New snapshot and update versions need to be added to the `org.openmrs.liquibase.ChangeLogVersions` class. 

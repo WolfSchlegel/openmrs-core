@@ -27,7 +27,17 @@
 		See http://www.liquibase.org/manual/home#available_database_refactorings 
 		for a list of supported elements and attributes 
 	-->
-	
+
+	<!-- 
+		Do not use BOOLEAN as a type for boolean attributes as Liquibase version 3.x no longer maps BOOLEAN to 
+		TINYINT(1) when applying change logs to a MySQL database.
+		
+		Instead use the property "boolean.type. Also c.f. openmrs-core/liquibase/README.md and 
+		https://www.liquibase.org/documentation/changelog_parameters.html. 
+	-->
+	<property name="boolean.type" value="TINYINT(1)" dbms="mysql"/>
+	<property name="boolean.type" value="BOOLEAN" dbms="!mysql"/>
+
 	<changeSet id="0" author="bwolfe">
 		<preConditions onError="MARK_RAN" onFail="MARK_RAN">
 			<sqlCheck expectedResult="The update-to-latest.sql file needs to be run on this db.">
@@ -4391,7 +4401,7 @@
 	<changeSet id="20110425-1600-create-visit-attribute-type-table-fix" author="sunbiz">
 		<comment>(Fixed)Change visit_attribute_type.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="visit_attribute_type">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -4453,7 +4463,7 @@
 	<changeSet id="20110425-1700-create-visit-attribute-table-fix" author="sunbiz">
 		<comment>(Fixed)Change visit_attribute.voided to BOOLEAN</comment>
 		<ext:modifyColumn tableName="visit_attribute">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -4592,7 +4602,7 @@
 	<changeSet id="20110817-1544-create-location-attribute-type-table-fix" author="sunbiz">
 		<comment>(Fixed)Change visit_attribute.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="location_attribute_type">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -4657,7 +4667,7 @@
 	<changeSet id="20110817-1601-create-location-attribute-table-fix" author="sunbiz">
 		<comment>(Fixed)Change visit_attribute.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="location_attribute">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5162,7 +5172,7 @@
 	<changeSet id="20110301-1030b-fix" author="sunbiz">
 		<comment>(Fixed)Change concept_reference_term.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="concept_reference_term">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5206,12 +5216,12 @@
 		<preConditions onFail="MARK_RAN"><columnExists tableName="concept_map_type" columnName="isHidden"/></preConditions>
 		<comment>(Fixed)Change concept_map_type.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="concept_map_type">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
 		<ext:modifyColumn tableName="concept_map_type">
-			<column name="isHidden" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="isHidden" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5734,7 +5744,7 @@
  			</column>
  			<column name="changed_by" type="int" />
  			<column name="date_changed" type="datetime" />
- 			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+ 			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
  				<constraints nullable="false" />
  			</column>
  			<column name="retired_by" type="int" />
@@ -5764,7 +5774,7 @@
 		</preConditions>
 		<comment>(Fixed)Change provider.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="provider">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5794,7 +5804,7 @@
              <column name="date_created" type="datetime"><constraints nullable="false"/></column>
              <column name="changed_by" type="int"/>
              <column name="date_changed" type="datetime" />
-             <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+             <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                  <constraints nullable="false"/>
              </column>
              <column name="retired_by" type="int" />
@@ -5818,7 +5828,7 @@
 		</preConditions>
 		<comment>(Fixed)Change provider_attribute_type.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="provider_attribute_type">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5856,7 +5866,7 @@
              <column name="date_created" type="datetime"><constraints nullable="false"/></column>
              <column name="changed_by" type="int"/>
              <column name="date_changed" type="datetime" />
-             <column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+             <column name="voided" type="${boolean.type}" defaultValueBoolean="false">
                  <constraints nullable="false"/>
              </column>
              <column name="voided_by" type="int" />
@@ -5885,7 +5895,7 @@
 		</preConditions>
 		<comment>(Fixed)Change provider_attribute.voided to BOOLEAN</comment>
 		<ext:modifyColumn tableName="provider_attribute">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5908,7 +5918,7 @@
              <column name="date_created" type="datetime"><constraints nullable="false"/></column>
              <column name="changed_by" type="int"/>
              <column name="date_changed" type="datetime" />
-             <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+             <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                  <constraints nullable="false"/>
              </column>
              <column name="retired_by" type="int" />
@@ -5932,7 +5942,7 @@
 		</preConditions>
 		<comment>(Fixed)Change encounter_role.retired to BOOLEAN</comment>
 		<ext:modifyColumn tableName="encounter_role">
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -5956,7 +5966,7 @@
              <column name="date_created" type="datetime"><constraints nullable="false"/></column>
              <column name="changed_by" type="int"/>
              <column name="date_changed" type="datetime" />
-             <column defaultValueBoolean="false" name="voided" type="BOOLEAN"><constraints nullable="false" /></column>
+             <column defaultValueBoolean="false" name="voided" type="${boolean.type}"><constraints nullable="false" /></column>
              <column name="date_voided" type="datetime" />
              <column name="voided_by" type="int" />
              <column name="void_reason" type="varchar(255)" />
@@ -5978,7 +5988,7 @@
 		</preConditions>
 		<comment>(Fixed)Change encounter_provider.voided to BOOLEAN</comment>
 		<ext:modifyColumn tableName="encounter_provider">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -6302,7 +6312,7 @@
 			<column name="date_changed" type="datetime" />
 		</addColumn>
 		<addColumn tableName="person_merge_log">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false" />
 			</column>
 		</addColumn>
@@ -6328,7 +6338,7 @@
 		</preConditions>
 		<comment>(Fixed)Change person_merge_log.voided to BOOLEAN</comment>
 		<ext:modifyColumn tableName="person_merge_log">
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 		</ext:modifyColumn>
@@ -7262,7 +7272,7 @@
 			Adding deathdate_estimated column to person.
 		</comment>
 		<addColumn tableName="person">
-                    <column defaultValueBoolean="false" name="deathdate_estimated" type="BOOLEAN">
+                    <column defaultValueBoolean="false" name="deathdate_estimated" type="${boolean.type}">
                         <constraints nullable="false"/>
                     </column>
 		</addColumn>
@@ -7755,7 +7765,7 @@
             <column name="frequency_per_day" type="double"/>
             <column name="creator" type="int"><constraints nullable="false"/></column>
             <column name="date_created" type="datetime"><constraints nullable="false"/></column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int" />
@@ -8197,7 +8207,7 @@
             <column name="date_created" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+            <column name="retired" type="${boolean.type}" defaultValueBoolean="false">
                 <constraints nullable="false"/>
             </column>
             <column name="retired_by" type="int"/>
@@ -9120,7 +9130,7 @@
 			<column name="date_created" type="DATETIME">
 				<constraints nullable="false"/>
 			</column>
-			<column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+			<column defaultValueBoolean="false" name="retired" type="${boolean.type}">
 				<constraints nullable="false"/>
 			</column>
 			<column name="retired_by" type="int"/>
@@ -9175,7 +9185,7 @@
 			<column name="date_created" type="DATETIME">
 				<constraints nullable="false"/>
 			</column>
-			<column defaultValueBoolean="false" name="retired" type="BOOLEAN">
+			<column defaultValueBoolean="false" name="retired" type="${boolean.type}">
 				<constraints nullable="false"/>
 			</column>
 			<column name="retired_by" type="int"/>
@@ -9233,7 +9243,7 @@
 			<column name="date_created" type="DATETIME">
 				<constraints nullable="false"/>
 			</column>
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 			<column name="voided_by" type="int"/>
@@ -9350,7 +9360,7 @@
 			</column>
 			<column name="changed_by" type="int"/>
 			<column name="date_changed" type="datetime"/>
-			<column name="retired" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="retired" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 			<column name="retired_by" type="int"/>
@@ -9405,7 +9415,7 @@
 			</column>
 			<column name="changed_by" type="int"/>
 			<column name="date_changed" type="datetime"/>
-			<column name="voided" type="BOOLEAN" defaultValueBoolean="false">
+			<column name="voided" type="${boolean.type}" defaultValueBoolean="false">
 				<constraints nullable="false"/>
 			</column>
 			<column name="voided_by" type="int"/>

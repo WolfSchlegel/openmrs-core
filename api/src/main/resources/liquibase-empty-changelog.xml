@@ -18,6 +18,16 @@
 	    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
 		http://www.liquibase.org/xml/ns/dbchangelog 
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+	
+	<!-- 
+		Do not use BOOLEAN as a type for boolean attributes as Liquibase version 3.x no longer maps BOOLEAN to 
+		TINYINT(1) when applying change logs to a MySQL database.
+		
+		Instead use the property "boolean.type. Also c.f. openmrs-core/liquibase/README.md and 
+		https://www.liquibase.org/documentation/changelog_parameters.html. 
+	-->
+	<property name="boolean.type" value="TINYINT(1)" dbms="mysql"/>
+	<property name="boolean.type" value="BOOLEAN" dbms="!mysql"/>
 
 	<!-- This changelog is empty on purpose. It is used by the org.openmrs.util.DatabaseUpdater class. -->
 	
