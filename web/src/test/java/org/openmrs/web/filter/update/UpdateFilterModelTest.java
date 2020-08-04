@@ -18,18 +18,31 @@ import org.openmrs.liquibase.LiquibaseProvider;
 import org.openmrs.util.DatabaseUpdater.OpenMRSChangeSet;
 import org.openmrs.util.DatabaseUpdaterLiquibaseProvider;
 
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openmrs.liquibase.LiquibaseProvider;
+import org.openmrs.util.DatabaseUpdater;
+import org.openmrs.util.DatabaseUpdater.OpenMRSChangeSet;
+import org.openmrs.util.DatabaseUpdaterLiquibaseProvider;
+import org.powermock.api.mockito.PowerMockito;
 
 /**
  * Tests {@link UpdateFilterModel}.
@@ -41,7 +54,7 @@ public class UpdateFilterModelTest {
 	
 	private UpdateFilterModel model;
 	
-	@Before
+	@BeforeEach
 	public void setUp() {
 		liquibaseProvider = new DatabaseUpdaterLiquibaseProvider();
 		databaseUpdaterWrapper = mock( DatabaseUpdaterWrapper.class );
@@ -57,7 +70,7 @@ public class UpdateFilterModelTest {
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
 		
-		assertTrue("should require an update", model.updateRequired);
+		assertTrue(model.updateRequired, "should require an update");
 		assertThat(model.changes, is(changes));
 		
 		verify( databaseUpdaterWrapper, times(1)).getUnrunDatabaseChanges( liquibaseProvider );
@@ -75,7 +88,7 @@ public class UpdateFilterModelTest {
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
 		
-		assertTrue("should require an update", model.updateRequired);
+		assertTrue(model.updateRequired, "should require an update");
 		assertThat(model.changes, is(empty()));
 
 		verify( databaseUpdaterWrapper, times(1)).getUnrunDatabaseChanges( liquibaseProvider );
@@ -93,7 +106,7 @@ public class UpdateFilterModelTest {
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
 		
-		assertFalse("should not require an update", model.updateRequired);
+		assertFalse(model.updateRequired, "should not require an update");
 		assertThat(model.changes, is(empty()));
 
 		verify( databaseUpdaterWrapper, times(1)).getUnrunDatabaseChanges( liquibaseProvider );
@@ -109,7 +122,7 @@ public class UpdateFilterModelTest {
 		when(databaseUpdaterWrapper.updatesRequired()).thenReturn(false);
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
-		
+
 		assertFalse("should not require an update", model.updateRequired);
 		assertNull("should not have changes", model.changes);
 
@@ -127,11 +140,13 @@ public class UpdateFilterModelTest {
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
 		
+
 		assertFalse("should not require an update", model.updateRequired);
 		assertNull("should not have changes", model.changes);
 
 		verify( databaseUpdaterWrapper, times(2)).getUnrunDatabaseChanges( liquibaseProvider );
 		verify( databaseUpdaterWrapper, times(1)).updatesRequired();
+
 	}
 	
 	@Test
@@ -144,7 +159,7 @@ public class UpdateFilterModelTest {
 		
 		model = new UpdateFilterModel(liquibaseProvider, databaseUpdaterWrapper);
 		
-		assertTrue("should require an update", model.updateRequired);
+		assertTrue(model.updateRequired, "should require an update");
 		assertThat(model.changes, is(changes));
 
 		verify( databaseUpdaterWrapper, times(1)).getUnrunDatabaseChanges( liquibaseProvider );
