@@ -380,7 +380,7 @@ public class WebUtil implements GlobalPropertyListener {
 		
 		if (type == FORMAT_TYPE.TIMESTAMP) {
 			String dateTimeFormat = Context.getAdministrationService().getGlobalPropertyValue(
-			    OpenmrsConstants.GP_SEARCH_DATE_DISPLAY_FORMAT, null);
+			    OpenmrsConstants.GP_SEARCH_DATE_DISPLAY_FORMAT, "");
 			if (StringUtils.isEmpty(dateTimeFormat)) {
 				dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 			} else {
@@ -388,7 +388,7 @@ public class WebUtil implements GlobalPropertyListener {
 			}
 		} else if (type == FORMAT_TYPE.TIME) {
 			String timeFormat = Context.getAdministrationService().getGlobalPropertyValue(
-			    OpenmrsConstants.GP_SEARCH_DATE_DISPLAY_FORMAT, null);
+			    OpenmrsConstants.GP_SEARCH_DATE_DISPLAY_FORMAT, "");
 			if (StringUtils.isEmpty(timeFormat)) {
 				dateFormat = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale);
 			} else {
