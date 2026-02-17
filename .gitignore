@@ -92,3 +92,6 @@ api/Drug/
 api/PatientIdentifier/
 api/PersonAttribute/
 api/PersonName/
+
+### Macos
+.DS_Store
